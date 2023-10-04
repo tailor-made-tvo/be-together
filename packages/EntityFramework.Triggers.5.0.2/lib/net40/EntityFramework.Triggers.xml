@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EntityFramework.Triggers</name>
+    </assembly>
+    <members>
+        <member name="T:EntityFramework.Triggers.DbContextWithTriggers">
+            <summary>
+            A <see cref="T:System.Data.Entity.DbContext"/> class with <see cref="T:EntityFramework.Triggers.Triggers`1"/> support
+            </summary>
+        </member>
+        <member name="M:EntityFramework.Triggers.Extensions.Triggers``1(``0)">
+            <summary>
+            Retrieve the <see cref="T:Triggers`1{TTriggerable}"/> object that contains the trigger events for this <see cref="T:EntityFramework.Triggers.ITriggerable"/>
+            </summary>
+            <typeparam name="TTriggerable"></typeparam>
+            <param name="triggerable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EntityFramework.Triggers.Extensions.SaveChangesWithTriggers(System.Data.Entity.DbContext,System.Func{System.Int32})">
+            <summary>
+            Saves all changes made in this context to the underlying database, firing trigger events accordingly.
+            </summary>
+            <param name="dbContext"></param>
+            <param name="baseSaveChanges">A delegate to base.SaveChanges(). Always pass `base.SaveChanges`.</param>
+            <example>this.SaveChangesWithTriggers(base.SaveChanges);</example>
+            <returns>The number of objects written to the underlying database.</returns>
+        </member>
+        <member name="E:EntityFramework.Triggers.Triggers`1.Inserting">
+            <summary>Raised just before this entity is added to the store</summary>
+        </member>
+        <member name="E:EntityFramework.Triggers.Triggers`1.Updating">
+            <summary>Raised just before this entity is updated in the store</summary>
+        </member>
+        <member name="E:EntityFramework.Triggers.Triggers`1.Deleting">
+            <summary>Raised just before this entity is deleted from the store</summary>
+        </member>
+        <member name="E:EntityFramework.Triggers.Triggers`1.InsertFailed">
+            <summary>Raised after Inserting event, but before Inserted event when an exception has occured while saving the changes to the store</summary>
+        </member>
+        <member name="E:EntityFramework.Triggers.Triggers`1.UpdateFailed">
+            <summary>Raised after Updating event, but before Updated event when an exception has occured while saving the changes to the store</summary>
+        </member>
+        <member name="E:EntityFramework.Triggers.Triggers`1.DeleteFailed">
+            <summary>Raised after Deleting event, but before Deleted event when an exception has occured while saving the changes to the store</summary>
+        </member>
+        <member name="E:EntityFramework.Triggers.Triggers`1.Inserted">
+            <summary>Raised just after this entity is added to the store</summary>
+        </member>
+        <member name="E:EntityFramework.Triggers.Triggers`1.Updated">
+            <summary>Raised just after this entity is updated in the store</summary>
+        </member>
+        <member name="E:EntityFramework.Triggers.Triggers`1.Deleted">
+            <summary>Raised just after this entity is deleted from the store</summary>
+        </member>
+        <member name="T:EntityFramework.Triggers.Triggers`1.Entry">
+            <summary>Contains the context and the instance of the changed entity</summary>
+        </member>
+    </members>
+</doc>

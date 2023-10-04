@@ -1,0 +1,69 @@
+﻿@model LoginViewModel
+@using Microsoft.AspNet.Identity
+@using TMS.be_together.Code
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    if (Request.Path.Trim('/') == "")
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink(@Html.Resource("Strings, MaskLink_Contact"), AccountControllerAction.Register, AccountControllerAction.Base)
+            </li>
+            <li>
+                @Html.ActionLink(@Html.Resource("Strings, MaskText_LoginnamePasswordLost"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new { @tabindex = "5", @class = "navbar-link navbar-right" })
+            </li>
+            <li>
+                <div class="navbar-login">
+                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                    <div class="form-group navbar-login-row">
+                        <div class="navbar-login-column navbar-login-column-small-12">
+                            @Html.TextBoxFor(m => m.Loginname, new {@class = "form-control input-sm input-loginname", @placeholder = @Html.Resource("Strings, MaskText_Loginname"), @tabindex = 1})
+                            @Html.ValidationMessageFor(m => m.Loginname, "", new {@class = "text-danger-small"})
+                        </div>
+                    </div>
+                    <div class="form-group navbar-login-row">
+                        <div class="navbar-login-column navbar-login-column-small-8">
+                            @Html.PasswordFor(m => m.Password, new {@class = "form-control input-sm input-password", @placeholder = @Html.Resource("Strings, MaskText_Password"), @tabindex = 2})
+                        </div>
+                        <div class="navbar-login-column navbar-login-column-small-4">
+                            <input type="submit" value="@Html.Resource("Strings, MaskText_Login")" class="btn btn-primary btn-sm btn-maximize" tabindex="4"/>
+                        </div>
+                    </div>
+                    <div class="form-group navbar-login-row">
+                        <div class="navbar-login-column navbar-login-column-small-12">
+                            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger-small navbar-login-column-small-12"})
+                        </div>
+                    </div>
+                    <div class="navbar-login-row">
+                        <div class="navbar-login-column navbar-login-column-small-1">
+                            @Html.CheckBoxFor(m => m.RememberMe, new {@class = "checkbox", @id = "persist_box", @tabindex = "3"})
+                        </div>
+                        <div class="navbar-login-column navbar-login-column-small-6">
+                            @Html.Label(@Html.Resource("Strings, MaskText_RememberMe"), new {@class = "navbar-link", @for = "persist_box"})
+                        </div>
+                        <div class="navbar-login-column navbar-login-column-small-5">
+                            @*@Html.ActionLink(@Html.Resource("Strings, MaskText_LoginnamePasswordLost"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, routeValues: null, htmlAttributes: new { @class = "navbar-link navbar-right", title = @Html.Resource("Strings, MaskText_LoginnamePasswordLost"), tabindex = "5" })*@
+                            @*@Html.Label(@Html.Resource("Strings, MaskText_LoginnamePasswordLost"), new { @class = "navbar-link navbar-right", @href="@Url.RouteUrl(AccountControllerRoute.GetLogin)", tabindex="5" })*@
+                            @*<a class="navbar-link navbar-right" href="@Url.RouteUrl(AccountControllerRoute.GetForgotPassword)" tabindex="5">@Html.Resource("Strings, MaskText_LoginnamePasswordLost")</a>*@
+                            @Html.ActionLink(@Html.Resource("Strings, MaskText_LoginnamePasswordLost"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new { @tabindex = "5", @class = "navbar-link navbar-right" })
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    }
+}

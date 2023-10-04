@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CacheDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CacheData">
+          <Key>
+            <PropertyRef Name="PartitionName" />
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="PartitionName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChangedOn" Type="datetime" />
+          <Property Name="ChangedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="CacheData_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="partitionName" Type="varchar" Mode="In" />
+          <Parameter Name="key" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CacheData_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="partitionName" Type="varchar" Mode="In" />
+          <Parameter Name="key" Type="varchar" Mode="In" />
+          <Parameter Name="value" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="CacheData_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="partitionName" Type="varchar" Mode="In" />
+          <Parameter Name="key" Type="varchar" Mode="In" />
+          <Parameter Name="value" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="CacheDataModelStoreContainer">
+          <EntitySet Name="CacheData" EntityType="Self.CacheData" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CacheDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CacheDataEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="CacheData_Delete">
+            <Parameter Name="partitionName" Mode="In" Type="String" />
+            <Parameter Name="key" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CacheData" EntityType="CacheDataModel.CacheData" />
+          <FunctionImport Name="CacheData_Insert" ReturnType="Collection(CacheDataModel.CacheData_Insert_Result)">
+            <Parameter Name="partitionName" Mode="In" Type="String" />
+            <Parameter Name="key" Mode="In" Type="String" />
+            <Parameter Name="value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CacheData_Update" ReturnType="Collection(CacheDataModel.CacheData_Update_Result)">
+            <Parameter Name="partitionName" Mode="In" Type="String" />
+            <Parameter Name="key" Mode="In" Type="String" />
+            <Parameter Name="value" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="CacheData">
+          <Key>
+            <PropertyRef Name="PartitionName" />
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="PartitionName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChangedOn" Type="DateTime" Precision="3" />
+          <Property Name="ChangedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="CacheData_Insert_Result">
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="ChangedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ChangedBy" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="CacheData_Update_Result">
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="ChangedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ChangedBy" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CacheDataModelStoreContainer" CdmEntityContainer="CacheDataEntities">
+          <FunctionImportMapping FunctionImportName="CacheData_Delete" FunctionName="CacheDataModel.Store.CacheData_Delete" />
+          <EntitySetMapping Name="CacheData">
+            <EntityTypeMapping TypeName="CacheDataModel.CacheData">
+              <MappingFragment StoreEntitySet="CacheData">
+                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+                <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="PartitionName" ColumnName="PartitionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="CacheDataModel.CacheData">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="CacheDataModel.Store.CacheData_Delete" >
+                  <ScalarProperty Name="Key" ParameterName="key" />
+                  <ScalarProperty Name="PartitionName" ParameterName="partitionName" />
+                </DeleteFunction>
+                <InsertFunction FunctionName="CacheDataModel.Store.CacheData_Insert" >
+                  <ScalarProperty Name="Value" ParameterName="value" />
+                  <ScalarProperty Name="Key" ParameterName="key" />
+                  <ScalarProperty Name="PartitionName" ParameterName="partitionName" />
+                  <ResultBinding Name="CreatedOn" ColumnName="CreatedOn" />
+                  <ResultBinding Name="CreatedBy" ColumnName="CreatedBy" />
+                  <ResultBinding Name="ChangedOn" ColumnName="ChangedOn" />
+                  <ResultBinding Name="ChangedBy" ColumnName="ChangedBy" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="CacheDataModel.Store.CacheData_Update" >
+                  <ScalarProperty Name="Value" ParameterName="value" Version="Current" />
+                  <ScalarProperty Name="Key" ParameterName="key" Version="Current" />
+                  <ScalarProperty Name="PartitionName" ParameterName="partitionName" Version="Current" />
+                  <ResultBinding Name="CreatedOn" ColumnName="CreatedOn" />
+                  <ResultBinding Name="CreatedBy" ColumnName="CreatedBy" />
+                  <ResultBinding Name="ChangedOn" ColumnName="ChangedOn" />
+                  <ResultBinding Name="ChangedBy" ColumnName="ChangedBy" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CacheData_Insert" FunctionName="CacheDataModel.Store.CacheData_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CacheDataModel.CacheData_Insert_Result">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CacheData_Update" FunctionName="CacheDataModel.Store.CacheData_Update">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CacheDataModel.CacheData_Update_Result">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

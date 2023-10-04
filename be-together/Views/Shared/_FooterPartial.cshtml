@@ -1,0 +1,71 @@
+﻿@model LoginViewModel
+@using Microsoft.AspNet.Identity
+@using TMS.be_together.Code
+@if (Request.IsAuthenticated)
+{
+    @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }*@
+}
+else
+{
+    <footer role="contentinfo" class="panel-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink(@Html.Resource("Strings, MaskLink_Contact"), AccountControllerAction.Register, AccountControllerAction.Base, null, new { @class = "footer-link" })
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("2. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("3. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("4. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("5. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("6. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("7. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("8. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("9. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("10. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("11. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    @Html.ActionLink("12. " + @Html.Resource("Strings, MaskText_aaa"), AccountControllerAction.ForgotPassword, AccountControllerAction.Base, null, new {@tabindex = "5", @class = "footer-link"})
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 no-padding">
+                    <p></p>
+                </div>
+            </div>
+            <div class="row">
+                <p></p>
+            </div>
+            <div class="row">
+                <p>&copy; @DateTime.Now.Year - @Application.LongName</p>
+            </div>
+        </div>
+    </footer>
+}

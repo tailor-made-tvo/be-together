@@ -1,0 +1,182 @@
+﻿/* The purpose of this file is to override the font file path and also to allow you
+   to override bootstrap variables in variables.less. When the bootstrap NuGet 
+   package is updated, no changes will need to be made except to regenerate 
+   the CSS from this file. */
+
+@import "bootstrap.less";
+
+@icon-font-path:        "../../Content/fonts/bootstrap";
+
+
+
+
+
+
+.navbar-brand {
+    font-size: @font-size-h2;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+
+.input-loginname {
+    width: 100%
+}
+
+.input-password {
+    width: 100%
+}
+
+.btn-maximize {
+    width: 100%;
+    height: 100%;
+}
+
+.no-padding {
+    padding: 0px 0px 0px 0px;
+}
+
+
+.footer-link {
+    font-size: @font-size-small;
+    color: @footer-link-color;
+
+    &:hover {
+        color: @footer-link-hover-color;
+    }
+}
+
+.footer-toggle {
+    &:extend(.navbar-toggle all);
+}
+
+
+/*.navbar-right {
+  > a {
+    padding-right:    1.2rem;
+  }
+
+  // Uncollapse the nav
+  @media (min-width: @grid-float-breakpoint) {
+    float: left;
+    margin: 0;
+
+    > li {
+      float: left;
+      > a {
+        padding-top:    @navbar-padding-vertical;
+        padding-bottom: @navbar-padding-vertical;
+      }
+    }
+  }
+}*/
+
+
+
+a[class="navbar-link navbar-right"] {
+    @media (max-width: @grid-float-breakpoint-max) {
+        padding-right:    0rem;
+    }
+
+    @media (min-width: @grid-float-breakpoint) {
+        padding-right:    1.2rem;
+    }
+}
+
+
+.body-content, .navbar, .form-group-sm {
+    min-width: @screen-min-size;
+}
+
+.navbar-login {
+    width: @screen-min-size;
+    font-size: @font-size-small;
+    /*font-weight: light;*/
+    /*> div {
+        .text-left;
+        .navbar-link;
+    }*/
+    &-row {
+        width: 100%;
+        margin: 0 auto;
+        padding-top: .2rem;
+        padding-bottom: .2rem;
+        clear: left;
+        
+        &:first-child {
+            padding-top: .8rem;
+        }
+        &:last-child {
+            padding-bottom: .8rem;
+        }
+    }
+    &-column {
+        margin: 0 auto;
+        width: 100%;
+        float: left;
+        padding-left: .2rem;
+        padding-right: .2rem;
+
+        &:first-child {
+            padding-left: .8rem;
+        }
+
+        &:last-child {
+            padding-right: .8rem;
+        }
+
+        &-small-1  {
+            width:8.33333%
+        }
+        
+        &-small-2  {
+            width:16.66667%
+        }
+
+        &-small-3  {
+            width:25%
+        }
+
+        &-small-4  {
+            width:33.33333%
+        }
+
+        &-small-5  {
+            width:41.66667%
+        }
+
+        &-small-6  {
+            width:50%
+        }
+
+        &-small-7  {
+            width:58.33333%
+        }
+
+        &-small-8  {
+            width:66.66667%
+        }
+
+        &-small-9  {
+            width:75%
+        }
+
+        &-small-10  {
+            width:83.33333%
+        }
+
+        &-small-11  {
+            width:91.66667%
+        }
+
+        &-small-12  {
+            width:100%
+        }
+    }
+}
+
+.text-danger {
+    &-small {
+        font-size: @font-size-small;
+        color: #a94442;
+    }
+}
